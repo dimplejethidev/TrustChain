@@ -1,18 +1,18 @@
-import React from 'react';
-import { FormLabel, Select as ChakraInput } from '@chakra-ui/react';
+import React from "react";
+import { FormLabel, Select as ChakraInput } from "@chakra-ui/react";
 
 interface OptionProps {
-  name: string
-  value: string
+  name: string;
+  value: string;
 }
 
 interface SelectProps {
-  id: string
-  name: string
-  label?: string
-  placeholder?: string
-  options?: OptionProps[],
-  onChange:  (e: any) => void
+  id: string;
+  name: string;
+  label?: string;
+  placeholder?: string;
+  options?: OptionProps[];
+  onChange: (e: any) => void;
 }
 
 const Select = ({
@@ -25,36 +25,39 @@ const Select = ({
 }: SelectProps) => {
   return (
     <div>
-      <FormLabel
-        htmlFor={id}
-        className="text-gray-700 dark:text-white"
-      >
+      <FormLabel htmlFor={id} className="text-gray-700 dark:text-white">
         {label}
       </FormLabel>
-      <ChakraInput 
+      <ChakraInput
         variant="outline"
         id={id}
         name={name}
-        placeholder={placeholder}
         onChange={onChange}
-        className="mt-0 text-gray-700 dark:text-white" 
-        focusBorderColor="#F28C28"
+        className="mt-0 text-gray-700 dark:text-white"
+        focusBorderColor="#008dff"
       >
-        {
-          options?.map(({name, value}) => 
-            <option key={value} className="text-gray-700 dark:text-white" value={value}>{name}</option>
-          )
-        }
+        <option selected hidden disabled value="">
+          {placeholder}
+        </option>
+        {options?.map(({ name, value }) => (
+          <option
+            key={value}
+            className="text-gray-700 dark:text-white"
+            value={value}
+          >
+            {name}
+          </option>
+        ))}
       </ChakraInput>
     </div>
-  )
-}
+  );
+};
 
-export default Select
+export default Select;
 
 Select.defaultProps = {
-  label: '',
-  placeholder: '',
+  label: "",
+  placeholder: "",
   options: [],
-  onchange: () => {}
-}
+  onchange: () => {},
+};

@@ -33,7 +33,7 @@ const Register: NextPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="px-4 md:px-0 mx-auto max-w-[1080px]">
+      <main className="px-4 md:px-0 my-8 mx-auto max-w-[1080px]">
         <div className="max-w-7xl pt-5 pb-5 mx-auto">
           <Header heading="Register" />
           <div className="flex flex-col md:flex-row text-center w-full">
@@ -72,7 +72,7 @@ const Register: NextPage = () => {
               </div>
             </div>
             <div>
-              <Image src="/register.png" width="500" height="500" alt="Register" />
+              <Image src="/registerVector.png" width="700" height="600" alt="Register" />
             </div>
           </div>
         </div>

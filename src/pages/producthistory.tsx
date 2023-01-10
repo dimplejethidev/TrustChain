@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Input from '../components/form-elements/input';
-import Button from '../components/form-elements/button';
 import Header from '../components/form-components/Header';
 import Timeline from '../components/timeline';
 import ProductDetail from '../components/product-detail';
@@ -13,10 +12,6 @@ const Producthistory: NextPage = () => {
 
   const handleData = (e: any) => {
     setData({ ...data, [e.target.name]: e.target.value })
-  }
-
-  const handleSubmit = () => {
-    // Submission logics
   }
 
   /* Temp Product History Timeline */
@@ -34,7 +29,7 @@ const Producthistory: NextPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="px-4 md:px-0 mx-auto max-w-[1080px]">
+      <main className="px-4 md:px-0 my-8 mx-auto max-w-[1080px]">
         <div className="max-w-7xl pt-5 pb-5 mx-auto">
           <Header heading="Product History" />
           <div className="flex flex-col text-center w-full">
@@ -53,15 +48,11 @@ const Producthistory: NextPage = () => {
                             placeholder="Product ID"
                             onChange={handleData}
                           />
-                          <Button
-                            label="View History"
-                            onClick={handleSubmit}
-                          />
                         </form>
                         <div>
                           <p className="text-xl font-medium title-font mb-4 text-[#D27D2D]">Product Details</p>
                           <ProductDetail label="Product Id" value="sdfh2516q5dvvvvvqxv3x35" />
-                          <ProductDetail label="Product Image" value="/banner.png" type="image" />
+                          <ProductDetail label="Product Image" value="/vector.png" type="image" />
                         </div>
                       </div>
                       <div className="w-full md:w-1/2 space-y-6">

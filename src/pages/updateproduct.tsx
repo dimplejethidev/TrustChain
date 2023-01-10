@@ -26,7 +26,7 @@ const Updateproduct: NextPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="px-4 md:px-0 mx-auto max-w-[1080px]">
+      <main className="px-4 my-8 mx-auto max-w-[1080px]">
         <div className="max-w-7xl pt-5 pb-5 mx-auto">
           <Header heading="Update Product" />
           <div className="flex flex-col lg:flex-row text-center w-full">
@@ -69,7 +69,7 @@ const Updateproduct: NextPage = () => {
                     <p className="text-xl font-medium title-font mb-4 text-[#D27D2D]">Product Details</p>
                     <div className="p-2 flex flex-col">
                       <ProductDetail label="Product Id" value="sdfh2516q5dvvvvvqxv3x35" />
-                      <ProductDetail label="Product Image" value="/banner.png" type="image" />
+                      <ProductDetail label='' value="/vector.png" type="image" />
                     </div>
                     </div>
                   </div>
