@@ -1,14 +1,14 @@
-import React from 'react';
-import { FormLabel, Icon, InputGroup, Button } from '@chakra-ui/react';
-import { FiFile } from 'react-icons/fi';
+import React from "react";
+import { FormLabel, Icon, InputGroup, Button } from "@chakra-ui/react";
+import { FiFile } from "react-icons/fi";
 
 interface FileUploadProps {
-  id: string
-  name: string
-  label?: string
-  type?: string
-  accept?: string
-  onChange:  (e: any) => void
+  id: string;
+  name: string;
+  label?: string;
+  type?: string;
+  accept?: string;
+  onChange: (e: any) => void;
 }
 
 const FileUpload = ({
@@ -20,13 +20,14 @@ const FileUpload = ({
   onChange,
 }: FileUploadProps) => {
   return (
-    <div>
-      <FormLabel
-        htmlFor={id}
-        className="text-gray-700 dark:text-white">
+    <div className="flex flex-col">
+      <FormLabel htmlFor={id} className="text-gray-700 dark:text-white">
         {label}
       </FormLabel>
-      <Button leftIcon={<Icon as={FiFile} />}>
+      <Button
+        leftIcon={<Icon as={FiFile} />}
+        className="max-w-[300px] text-[#008dff] border-2 border-[#008dff] mb-5 md:mb-0"
+      >
         Upload
         <input
           id={id}
@@ -38,15 +39,15 @@ const FileUpload = ({
         />
       </Button>
     </div>
-  )
-}
+  );
+};
 
-export default FileUpload
+export default FileUpload;
 
 FileUpload.defaultProps = {
-  label: '',
-  placeholder: '',
-  type: 'file',
-  accept: 'image/*',
+  label: "",
+  placeholder: "",
+  type: "file",
+  accept: "image/*",
   onchange: () => {},
-}
+};

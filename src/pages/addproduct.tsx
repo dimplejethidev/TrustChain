@@ -34,7 +34,7 @@ const Addproduct: NextPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="px-4 md:px-0 mx-auto max-w-[1080px]">
+      <main className="px-4 md:px-0 my-8 mx-auto max-w-[1080px]">
         <div className="max-w-7xl pt-5 pb-5 mx-auto">
           <Header heading="Add Product" />
           <div className="flex flex-col text-center w-full">
@@ -84,7 +84,7 @@ const Addproduct: NextPage = () => {
                               onChange={handleImage}
                             />
                             <Image 
-                              src={imageUrl !== '' ? imageUrl : '/preview.webp'} 
+                              src={imageUrl !== '' ? imageUrl : '/previewIcon.png'} 
                               alt="preview" 
                               width={200} 
                               height={200} />
