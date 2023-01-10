@@ -1,29 +1,39 @@
-import React from 'react';
-import { useState } from 'react';
-import { NextPage } from 'next';
-import Image from 'next/image';
-import Head from 'next/head';
-import Input from '../components/form-elements/input';
-import Select from '../components/form-elements/select';
-import Button from '../components/form-elements/button';
-import Header from '../components/form-components/Header';
+import React from "react";
+import { useState } from "react";
+import { useRouter } from "next/router";
+import { NextPage } from "next";
+import { AspectRatio, Box } from "@chakra-ui/react";
+import Image from "next/image";
+import Head from "next/head";
+import Input from "../components/form-elements/input";
+import Select from "../components/form-elements/select";
+import Button from "../components/form-elements/button";
+import Header from "../components/form-components/Header";
+import { useToast } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
 
 const Register: NextPage = () => {
   const [data, setData] = useState({});
 
-  const handleData = (e: any) => {
-    setData({ ...data, [e.target.name]: e.target.value })
-  }
+  const router = useRouter();
 
-  const handleSubmit = () => {
-    // Submission logics
-  }
+  const handleData = (e: any) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [role, setRole] = useState(0);
+
+  const toast = useToast();
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const roles = [
-    { name: 'Retailer', value: 'retailer' },
-    { name: 'Distributor', value: 'distributor' },
-    { name: 'Manufacturer', value: 'manufacturer' },
-  ]
+    { name: "Retailer", value: "retailer" },
+    { name: "Distributor", value: "distributor" },
+    { name: "Manufacturer", value: "manufacturer" },
+  ];
 
   return (
     <>
@@ -47,7 +57,7 @@ const Register: NextPage = () => {
                         name="name"
                         label="Name"
                         placeholder="Name"
-                        onChange={handleData}
+                        onChange={(e) => setName(e.target.value)}
                       />
                       <Input
                         id="email"
@@ -55,7 +65,7 @@ const Register: NextPage = () => {
                         label="Email"
                         placeholder="Email"
                         type="email"
-                        onChange={handleData}
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                       <Select
                         id="roles"
@@ -63,22 +73,35 @@ const Register: NextPage = () => {
                         label="Roles"
                         placeholder="Select role"
                         options={roles}
-                        onChange={handleData}
+                        onChange={(event) => {
+                          setRole(event.target.selectedIndex - 1);
+                        }}
                       />
-                      <Button label="Connect Wallet" onClick={handleSubmit} />
+                      <Button label="Register" onClick={() => {
+                        if (role === 0) {
+                        router.push("https://platform-test.polygonid.com/claim-link/0449bb5d-5d0d-42d5-bf9d-a759fa26675e")
+                        } else {
+                          router.push("https://platform-test.polygonid.com/claim-link/f0042f20-8d6a-49e6-950b-b59014c3067c")
+                        }
+                      }} />
                     </form>
                   </div>
                 </div>
               </div>
             </div>
             <div>
-              <Image src="/registerVector.png" width="700" height="600" alt="Register" />
+              <Image
+                src="/registerVector.png"
+                width="700"
+                height="600"
+                alt="Register"
+              />
             </div>
           </div>
         </div>
       </main>
     </>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
