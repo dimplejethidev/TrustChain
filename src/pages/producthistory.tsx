@@ -47,7 +47,6 @@ const Producthistory: NextPage = () => {
       setProductHistory(locationStatuses.map((location: string, index: number) => {
        const convertedTime = timestamp[index];
        const date = new Date(convertedTime * 1000).toLocaleString();
-       console.log("AVASS",convertedTime)
         return { title: location, time: date, Location: locationURL[index] }
       }))
    
