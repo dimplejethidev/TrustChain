@@ -80,7 +80,7 @@ const Updateproduct: NextPage = () => {
   }, []);
 
   useContractEvent({
-    address: "0x90724E74C0AAebf9CAd4f19baDE4603170fB7b46",
+    address: "0xe857e34e6d6915e1A497a3f516336F8f31292563",
     abi: ABI,
     eventName: "ProofSubmitted",
     listener: (eventHappened, userAddress, error) => {
@@ -92,8 +92,6 @@ const Updateproduct: NextPage = () => {
  
   useEffect(() => {
     if ((data as ProductDetails) && !isLoading) {
-      console.log(data);
-
       const {
         name,
         description,
