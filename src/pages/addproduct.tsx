@@ -11,6 +11,7 @@ import {
   usePrepareContractWrite,
   useContractWrite,
   useWaitForTransaction,
+  useAccount
 } from "wagmi";
 import ABI from "../contracts/polygonID_ABI.json";
 import { useToast } from "@chakra-ui/react";
@@ -36,11 +37,14 @@ const Addproduct: NextPage = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [image, setImage] = useState("");
 
+  const [userAddress, setUserAddress] = useState("");
   const [eventHappened, setEventHappened] = useState(false);
 
   const handleData = (e: any) => {
     setProductData({ ...productData, [e.target.name]: e.target.value });
   };
+
+  const { address, isConnected } = useAccount();
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -49,11 +53,13 @@ const Addproduct: NextPage = () => {
   };
 
   useContractEvent({
-    address: "0x4d213FaeCab2722Ca377811507a5Dc2c4E139AFF",
+    address: "0x2298cCe5c77225Cc3f320a3acCaD1a9639206852",
     abi: ABI,
     eventName: "ProofSubmitted",
-    listener: (result, error) => {
-      setEventHappened(result as boolean);
+    listener: (eventHappened, userAddress, error) => {
+      if (eventHappened) {
+        setUserAddress(userAddress as string);
+      }
     },
   });
 
@@ -90,7 +96,7 @@ const Addproduct: NextPage = () => {
   }, [isSuccess]);
 
   useEffect(() => {
-    if (eventHappened) {
+    if (userAddress == address ) {
       toast({
         title: "Manufacturer Role Verified",
         description: "Manufacturer Role has been verified successfully",
@@ -101,7 +107,7 @@ const Addproduct: NextPage = () => {
       onClose();
       write?.();
     }
-  }, [eventHappened]);
+  }, [userAddress]);
 
   return (
     <>
