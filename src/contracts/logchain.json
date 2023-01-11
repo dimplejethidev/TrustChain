@@ -10,6 +10,11 @@
 				"internalType": "string",
 				"name": "_locationStatus",
 				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_locationURL",
+				"type": "string"
 			}
 		],
 		"name": "addLocationStatus",
@@ -42,6 +47,11 @@
 			{
 				"internalType": "string",
 				"name": "_imageURL",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_locationURL",
 				"type": "string"
 			}
 		],
@@ -85,6 +95,11 @@
 						"internalType": "uint256[]",
 						"name": "timestamp",
 						"type": "uint256[]"
+					},
+					{
+						"internalType": "string[]",
+						"name": "locationURL",
+						"type": "string[]"
 					}
 				],
 				"internalType": "struct LogChain.Product[]",
@@ -136,6 +151,11 @@
 						"internalType": "uint256[]",
 						"name": "timestamp",
 						"type": "uint256[]"
+					},
+					{
+						"internalType": "string[]",
+						"name": "locationURL",
+						"type": "string[]"
 					}
 				],
 				"internalType": "struct LogChain.Product",
