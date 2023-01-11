@@ -37,43 +37,47 @@ interface ProductDetails {
   imageURL: string;
   locationStatuses: string[];
   timestamp: number;
+  locationURL: string;
 }
 
 const Updateproduct: NextPage = () => {
   const [productData, setProductData] = useState({});
   const [productID, setProductID] = useState(0);
   const [productLocation, setProuctLocation] = useState('');
+  const [locationURL, setLocationURL] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [userAddress, setUserAddress] = useState("");
   const { address, isConnected } = useAccount();
   const toast = useToast();
 
   const { data, isError, isLoading } = useContractRead({
-    address: '0x4e90677555F6Ef8136075ec5A00230Dd41F5A2e8',
+    address: "0x8E1AE3afaD1487F2dE2998aF6FfedA668D673CED",
     abi: logchainABI,
-    functionName: 'getProduct',
-    args: [parseInt((productData as any).productid)]
-  })
+    functionName: "getProduct",
+    args: [productID],
+  });
 
   const { config } = usePrepareContractWrite({
-    address: '0xCd54a529618f5bDa042A8cAEFbAB802C6A796E64',
+    address: "0x8E1AE3afaD1487F2dE2998aF6FfedA668D673CED",
     abi: logchainABI,
-    functionName: 'addLocationStatus',
-    args: [productID, productLocation],
-  })
-  const { data: updateData, write } = useContractWrite(config)
+    functionName: "addLocationStatus",
+    args: [productID, productLocation, locationURL],
+  });
+  const { data: updateData, write } = useContractWrite(config);
 
   const { isLoading: isLoadingUpdate, isSuccess } = useWaitForTransaction({
     hash: updateData?.hash,
   })
 
-  const handleSubmit = () => {
-    console.log((productData as any).Location);
-  }
-  const handleData = (e: any) => {
-    setProductData({ ...productData, [e.target.name]: e.target.value })
-    setProductID(parseInt(e.target.value));
-  }
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      // Retrieve latitude & longitude coordinates from `navigator.geolocation` Web API
+      navigator.geolocation.getCurrentPosition(({ coords }) => {
+        const { latitude, longitude } = coords;
+        setLocationURL(`https://www.google.com/maps?q=${latitude},${longitude}`);
+      });
+    }
+  }, []);
 
   useContractEvent({
     address: "0x90724E74C0AAebf9CAd4f19baDE4603170fB7b46",
@@ -85,26 +89,42 @@ const Updateproduct: NextPage = () => {
       }
     },
   });
+ 
   useEffect(() => {
-    if (data as ProductDetails && !isLoading) {
+    if ((data as ProductDetails) && !isLoading) {
       console.log(data);
 
-      const { name, description, imageURL, locationStatuses, timestamp } = data as ProductDetails;
-      setProductData({ ...productData, name, description, imageURL, locationStatuses, timestamp })
+      const {
+        name,
+        description,
+        imageURL,
+        locationStatuses,
+        timestamp,
+        locationURL,
+      } = data as ProductDetails;
+      setProductData({
+        ...productData,
+        name,
+        description,
+        imageURL,
+        locationStatuses,
+        timestamp,
+        locationURL,
+      });
     }
-  }, [data])
+  }, [data]);
 
   useEffect(() => {
     if (isSuccess) {
       toast({
-        title: 'Location Updated',
-        description: 'Product location updated successfully',
-        status: 'success',
+        title: "Location Updated",
+        description: "Product location updated successfully",
+        status: "success",
         duration: 9000,
         isClosable: true,
-      })
+      });
     }
-  }, [isSuccess])
+  }, [isSuccess]);
 
   useEffect(() => {
     if (userAddress == address) {
@@ -187,14 +207,13 @@ const Updateproduct: NextPage = () => {
             </div>
             <div className="w-full md:w-1/2">
               <div className="w-full pl-0 p-4 overflow-x-hidden overflow-y-auto md:inset-0 justify-center flex md:h-full">
-                <div className="relative w-full h-full md:h-auto">
+              <div className="relative w-full h-full md:h-auto">
                   <div className="relative rounded-lg shadow-lg backdrop-blur-lg bg-white/80 dark:bg-gray-700/60">
                     <div className="px-6 py-6 lg:px-8">
-                      <p className="text-xl font-medium title-font mb-4 text-[#D27D2D]">Product Details</p>
+                    <p className="text-xl font-medium title-font mb-4 text-[#D27D2D]">{(productData as any).name}</p>
                       <div className="p-2 flex flex-col">
-                        <ProductDetail label="Product Id" value="sdfh2516q5dvvvvvqxv3x35" />
-                        <ProductDetail label='' value="/vector.png" type="image" />
-                      </div>
+                       
+                        <ProductDetail label="" value={(productData as any).imageURL} type="image" />                      </div>
                     </div>
                   </div>
                 </div>

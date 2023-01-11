@@ -216,7 +216,7 @@ const Addproduct: NextPage = () => {
                               <Box className="flex flex-col items-center justify-center">
                                 <QRCode
                                   level="Q"
-                                  style={{ width: 350 }}
+                                  style={{ width: 256 }}
                                   value={JSON.stringify(manufacturerQR)}
                                 />
                               </Box>
