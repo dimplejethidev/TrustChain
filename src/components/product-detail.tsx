@@ -20,7 +20,7 @@ const ProductDetail = ({
             loader={() => value}
             src={value}
             width="400"
-            height="400"
+            height="600"
             alt="label"
           />
         </>

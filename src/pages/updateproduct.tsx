@@ -36,8 +36,8 @@ interface ProductDetails {
   description: string;
   imageURL: string;
   locationStatuses: string[];
-  timestamp: number;
-  locationURL: string;
+  timestamp: number[];
+  locationURL: string[];
 }
 
 const Updateproduct: NextPage = () => {
@@ -51,14 +51,14 @@ const Updateproduct: NextPage = () => {
   const toast = useToast();
 
   const { data, isError, isLoading } = useContractRead({
-    address: "0x8E1AE3afaD1487F2dE2998aF6FfedA668D673CED",
+    address: "0x3f4210Da2916100118DE851C5ff72B5B9A707E21",
     abi: logchainABI,
     functionName: "getProduct",
     args: [productID],
   });
 
   const { config } = usePrepareContractWrite({
-    address: "0x8E1AE3afaD1487F2dE2998aF6FfedA668D673CED",
+    address: "0x3f4210Da2916100118DE851C5ff72B5B9A707E21",
     abi: logchainABI,
     functionName: "addLocationStatus",
     args: [productID, productLocation, locationURL],
@@ -110,7 +110,7 @@ const Updateproduct: NextPage = () => {
         locationURL,
       });
     }
-  }, [data]);
+  }, [data, isLoading, productData]);
 
   useEffect(() => {
     if (isSuccess) {
@@ -136,7 +136,7 @@ const Updateproduct: NextPage = () => {
       onClose();
       write?.();
     }
-  }, [userAddress]);
+  }, [userAddress, address, toast, onClose, write]);
 
   return (
     <>

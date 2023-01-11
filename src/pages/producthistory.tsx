@@ -1,25 +1,61 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import Input from '../components/form-elements/input';
 import Header from '../components/form-components/Header';
 import Timeline from '../components/timeline';
 import ProductDetail from '../components/product-detail';
+import logchainABI from "../contracts/logchain.json";
+import {
+  useContractWrite,
+  useWaitForTransaction,
+  useAccount,
+  useContractRead
+} from "wagmi";
+
+interface ProductDetails {
+  name: string;
+  description: string;
+  imageURL: string;
+  locationStatuses: string[];
+  timestamp: number[];
+  locationURL: string[];
+}
 
 const Producthistory: NextPage = () => {
-  const [data, setData] = useState({});
-
+  const [productData, setProductData] = useState({});
+  const [productID, setProductID] = useState(0);
+  const [productLocation, setProuctLocation] = useState('');
+  const [productHistory, setProductHistory] = useState([{ title: "Created Location", time: "", Location: "" }]);
   const handleData = (e: any) => {
-    setData({ ...data, [e.target.name]: e.target.value })
+    setProductData({ ...productData, [e.target.name]: e.target.value })
   }
+  
+ 
+  const { data, isError, isLoading } = useContractRead({
+    address: '0x3f4210Da2916100118DE851C5ff72B5B9A707E21',
+    abi: logchainABI,
+    functionName: 'getProduct',
+    args: [parseInt((productData as any).productid)]
+  })
 
-  /* Temp Product History Timeline */
-  const productHistory = [
-    { title: 'Sample Title1', subtitle:"2023", des:"This is a des" },
-    { title: 'Sample Title2', subtitle:"2023", des:"This is a des" },
-    { title: 'Sample Title3', subtitle:"2023", des:"This is a des" }
-  ]
+  useEffect(() => {
+    if (data as ProductDetails && !isLoading) {
+
+      const { name, description, imageURL, locationStatuses, timestamp, locationURL } = data as ProductDetails;
+      setProductHistory(locationStatuses.map((location: string, index: number) => {
+       const convertedTime = timestamp[index];
+       const date = new Date(convertedTime * 1000).toLocaleString();
+       console.log("AVASS",convertedTime)
+        return { title: location, time: date, Location: locationURL[index] }
+      }))
+   
+      setProductData({ ...productData, name, description, imageURL, locationStatuses, timestamp, locationURL })
+    }
+  }, [data, isLoading, productData])
+
+ 
 
   return (
     <>
@@ -50,9 +86,10 @@ const Producthistory: NextPage = () => {
                           />
                         </form>
                         <div>
-                          <p className="text-xl font-medium title-font mb-4 text-[#D27D2D]">Product Details</p>
-                          <ProductDetail label="Product Id" value="sdfh2516q5dvvvvvqxv3x35" />
-                          <ProductDetail label="Product Image" value="/vector.png" type="image" />
+                          <p className="text-xl font-medium title-font mb-4 text-[#D27D2D]">{(productData as any).name}</p>
+                          <div className="p-2 flex flex-col">
+                            <ProductDetail label="" value={(productData as any).imageURL} type="image" />
+                          </div>
                         </div>
                       </div>
                       <div className="w-full md:w-1/2 space-y-6">

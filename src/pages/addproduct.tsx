@@ -62,7 +62,7 @@ const Addproduct: NextPage = () => {
   const toast = useToast();
 
   const { config } = usePrepareContractWrite({
-    address: "0x8E1AE3afaD1487F2dE2998aF6FfedA668D673CED",
+    address: "0x3f4210Da2916100118DE851C5ff72B5B9A707E21",
     abi: logchainABI,
     functionName: "addProduct",
     args: [
