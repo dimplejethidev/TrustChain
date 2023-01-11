@@ -11,7 +11,7 @@ import {
   usePrepareContractWrite,
   useContractWrite,
   useWaitForTransaction,
-  useAccount
+  useAccount,
 } from "wagmi";
 import ABI from "../contracts/polygonID_ABI.json";
 import { useToast } from "@chakra-ui/react";
@@ -48,10 +48,6 @@ const Addproduct: NextPage = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const handleSubmit = () => {
-    // Submission logics
-  };
-
   useContractEvent({
     address: "0x2298cCe5c77225Cc3f320a3acCaD1a9639206852",
     abi: ABI,
@@ -66,7 +62,7 @@ const Addproduct: NextPage = () => {
   const toast = useToast();
 
   const { config } = usePrepareContractWrite({
-    address: "0xCd54a529618f5bDa042A8cAEFbAB802C6A796E64",
+    address: "0x8E1AE3afaD1487F2dE2998aF6FfedA668D673CED",
     abi: logchainABI,
     functionName: "addProduct",
     args: [
@@ -74,7 +70,8 @@ const Addproduct: NextPage = () => {
       (productData as any).productname,
       (productData as any).description,
       (productData as any).Location,
-      (productData as any).productimage,
+      imageUrl,
+      (productData as any).locationURL,
     ],
   });
   const { data, write } = useContractWrite(config);
@@ -82,6 +79,18 @@ const Addproduct: NextPage = () => {
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
   });
+
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      // Retrieve latitude & longitude coordinates from `navigator.geolocation` Web API
+      navigator.geolocation.getCurrentPosition(({ coords }) => {
+        const { latitude, longitude } = coords;
+        setProductData({
+          locationURL: `https://www.google.com/maps?q=${latitude},${longitude}`,
+        });
+      });
+    }
+  }, []);
 
   useEffect(() => {
     if (isSuccess) {
@@ -96,7 +105,7 @@ const Addproduct: NextPage = () => {
   }, [isSuccess]);
 
   useEffect(() => {
-    if (userAddress == address ) {
+    if (userAddress == address) {
       toast({
         title: "Manufacturer Role Verified",
         description: "Manufacturer Role has been verified successfully",
@@ -106,6 +115,7 @@ const Addproduct: NextPage = () => {
       });
       onClose();
       write?.();
+      setUserAddress("");
     }
   }, [userAddress]);
 
@@ -177,8 +187,9 @@ const Addproduct: NextPage = () => {
                                 });
                                 client.put(files).then((cid) => {
                                   console.log(cid);
-
-                                  handleData(e);
+                                  setImageUrl(
+                                    `https://${cid}.ipfs.w3s.link/${files[0].name}`
+                                  );
                                 });
                               }}
                             />

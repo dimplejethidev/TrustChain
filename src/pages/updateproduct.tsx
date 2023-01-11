@@ -144,14 +144,14 @@ const Updateproduct: NextPage = () => {
                           label="Product ID"
                           type="text"
                           placeholder="Product ID"
-                          onChange={handleData}
+                          onChange={(e) => setProductID(parseInt(e.target.value))}
                         />
                         <Input
                           id="Location"
                           name="Location"
                           label="Location"
                           placeholder="Location"
-                          onChange={handleData}
+                          onChange={(e) => setProuctLocation(e.target.value)}
                         />
                         <Button
                           label="Update Product"
@@ -188,7 +188,7 @@ const Updateproduct: NextPage = () => {
             <div className="w-full md:w-1/2">
               <div className="w-full pl-0 p-4 overflow-x-hidden overflow-y-auto md:inset-0 justify-center flex md:h-full">
                 <div className="relative w-full h-full md:h-auto">
-                  <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                  <div className="relative rounded-lg shadow-lg backdrop-blur-lg bg-white/80 dark:bg-gray-700/60">
                     <div className="px-6 py-6 lg:px-8">
                       <p className="text-xl font-medium title-font mb-4 text-[#D27D2D]">Product Details</p>
                       <div className="p-2 flex flex-col">
@@ -204,7 +204,7 @@ const Updateproduct: NextPage = () => {
         </div>
       </main>
     </>
-  )
-}
+  );
+};
 
-export default Updateproduct
+export default Updateproduct;
