@@ -11,6 +11,7 @@ import Button from "../components/form-elements/button";
 import Header from "../components/form-components/Header";
 import { useToast } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
+import { log } from "console";
 
 const Register: NextPage = () => {
   const [data, setData] = useState({});
@@ -30,9 +31,10 @@ const Register: NextPage = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const roles = [
-    { name: "Retailer", value: "retailer" },
-    { name: "Distributor", value: "distributor" },
     { name: "Manufacturer", value: "manufacturer" },
+    { name: "Distributor", value: "distributor" },
+    { name: "Retailer", value: "retailer" },
+   
   ];
 
   return (
@@ -78,6 +80,8 @@ const Register: NextPage = () => {
                         }}
                       />
                       <Button label="Register" onClick={() => {
+                        console.log("Role is ", role);
+                        
                         if (role === 0) {
                         router.push("https://platform-test.polygonid.com/claim-link/0449bb5d-5d0d-42d5-bf9d-a759fa26675e")
                         } else {
