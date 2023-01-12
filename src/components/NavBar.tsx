@@ -6,6 +6,19 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { BiMoon, BiSun } from "react-icons/bi";
 import { useRouter } from "next/router";
 import { ConnectKitButton } from "connectkit";
+import {
+  Flex,
+  Box,
+  Text,
+  Stack,
+  Icon,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  useColorModeValue,
+  useBreakpointValue,
+} from "@chakra-ui/react";
+import { ChevronRightIcon } from "@chakra-ui/icons";
 
 const Header = () => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
@@ -74,46 +87,7 @@ const Header = () => {
               </li>
               <li>
                 <Link
-                  href="/register"
-                  className={`${
-                    pathname === "/register"
-                      ? "text-[#a137df] dark:text-white"
-                      : "text-gray-700"
-                  } block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#9504ff] md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
-                  aria-current="page"
-                >
-                  <b>Register</b>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/addproduct"
-                  className={`${
-                    pathname === "/addproduct"
-                      ? "text-[#a137df] dark:text-white"
-                      : "text-gray-700"
-                  } block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#9504ff] md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
-                  aria-current="page"
-                >
-                  <b>Add Product</b>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/updateproduct"
-                  className={`${
-                    pathname === "/updateproduct"
-                      ? "text-[#a137df] dark:text-white"
-                      : "text-gray-700"
-                  } block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#9504ff] md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
-                  aria-current="page"
-                >
-                  <b>Update Status</b>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/products"
+                  href="/explore"
                   className={`${
                     pathname === "/products"
                       ? "text-[#a137df] dark:text-white"
@@ -121,8 +95,208 @@ const Header = () => {
                   } block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#9504ff] md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
                   aria-current="page"
                 >
-                  <b>Products</b>
+                  <b>Explore</b>
                 </Link>
+              </li>
+              <li>
+                <Popover trigger={"hover"} placement={"bottom-start"}>
+                  <PopoverTrigger>
+                    <Link
+                      href="#"
+                      className="block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#9504ff] md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                      aria-current="page"
+                    >
+                      <b>Register</b>
+                    </Link>
+                  </PopoverTrigger>
+                  <PopoverContent
+                    border={0}
+                    boxShadow={"xl"}
+                    bg={useColorModeValue("white", "gray.800")}
+                    p={4}
+                    rounded={"xl"}
+                    minW={"sm"}
+                  >
+                    <Link
+                      href="https://platform-test.polygonid.com/claim-link/0449bb5d-5d0d-42d5-bf9d-a759fa26675e"
+                      role={"group"}
+                      display={"block"}
+                      p={2}
+                      rounded={"md"}
+                      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+                    >
+                      <Stack direction={"row"} align={"center"}>
+                        <Box>
+                          <Text
+                            transition={"all .3s ease"}
+                            _groupHover={{ color: "pink.400" }}
+                            fontWeight={500}
+                          >
+                            {"Manufacturer"}
+                          </Text>
+                        </Box>
+                        <Flex
+                          transition={"all .3s ease"}
+                          transform={"translateX(-10px)"}
+                          opacity={0}
+                          _groupHover={{
+                            opacity: "100%",
+                            transform: "translateX(0)",
+                          }}
+                          justify={"flex-end"}
+                          align={"center"}
+                          flex={1}
+                        >
+                          <Icon
+                            color={"pink.400"}
+                            w={5}
+                            h={5}
+                            as={ChevronRightIcon}
+                          />
+                        </Flex>
+                      </Stack>
+                    </Link>
+                    <Link
+                      href="https://platform-test.polygonid.com/claim-link/f0042f20-8d6a-49e6-950b-b59014c3067c"
+                      role={"group"}
+                      display={"block"}
+                      p={2}
+                      rounded={"md"}
+                      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+                    >
+                      <Stack direction={"row"} align={"center"}>
+                        <Box>
+                          <Text
+                            transition={"all .3s ease"}
+                            _groupHover={{ color: "pink.400" }}
+                            fontWeight={500}
+                          >
+                            {"Distrubutor"}
+                          </Text>
+                        </Box>
+                        <Flex
+                          transition={"all .3s ease"}
+                          transform={"translateX(-10px)"}
+                          opacity={0}
+                          _groupHover={{
+                            opacity: "100%",
+                            transform: "translateX(0)",
+                          }}
+                          justify={"flex-end"}
+                          align={"center"}
+                          flex={1}
+                        >
+                          <Icon
+                            color={"pink.400"}
+                            w={5}
+                            h={5}
+                            as={ChevronRightIcon}
+                          />
+                        </Flex>
+                      </Stack>
+                    </Link>
+                  </PopoverContent>
+                </Popover>
+              </li>
+              <li>
+                <Popover trigger={"hover"} placement={"bottom-start"}>
+                  <PopoverTrigger>
+                    <Link
+                      href="#"
+                      className="block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#9504ff] md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                      aria-current="page"
+                    >
+                      <b>Products</b>
+                    </Link>
+                  </PopoverTrigger>
+                  <PopoverContent
+                    border={0}
+                    boxShadow={"xl"}
+                    bg={useColorModeValue("white", "gray.800")}
+                    p={4}
+                    rounded={"xl"}
+                    minW={"sm"}
+                  >
+                    <Link
+                      href="/addproduct"
+                      role={"group"}
+                      display={"block"}
+                      p={2}
+                      rounded={"md"}
+                      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+                    >
+                      <Stack direction={"row"} align={"center"}>
+                        <Box>
+                          <Text
+                            transition={"all .3s ease"}
+                            _groupHover={{ color: "pink.400" }}
+                            fontWeight={500}
+                          >
+                            {"Add Product"}
+                          </Text>
+                        </Box>
+                        <Flex
+                          transition={"all .3s ease"}
+                          transform={"translateX(-10px)"}
+                          opacity={0}
+                          _groupHover={{
+                            opacity: "100%",
+                            transform: "translateX(0)",
+                          }}
+                          justify={"flex-end"}
+                          align={"center"}
+                          flex={1}
+                        >
+                          <Icon
+                            color={"pink.400"}
+                            w={5}
+                            h={5}
+                            as={ChevronRightIcon}
+                          />
+                        </Flex>
+                      </Stack>
+                    </Link>
+                    <Link
+                      href="/updateproduct"
+                      role={"group"}
+                      display={"block"}
+                      p={2}
+                      rounded={"md"}
+                      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+                    >
+                      <Stack direction={"row"} align={"center"}>
+                        <Box>
+                          <Text
+                            transition={"all .3s ease"}
+                            _groupHover={{ color: "pink.400" }}
+                            fontWeight={500}
+                          >
+                            {"Update Status"}
+                          </Text>
+                        </Box>
+                        <Flex
+                          transition={"all .3s ease"}
+                          transform={"translateX(-10px)"}
+                          opacity={0}
+                          _groupHover={{
+                            opacity: "100%",
+                            transform: "translateX(0)",
+                          }}
+                          justify={"flex-end"}
+                          align={"center"}
+                          flex={1}
+                        >
+                          <Icon
+                            color={"pink.400"}
+                            w={5}
+                            h={5}
+                            as={ChevronRightIcon}
+                          />
+                        </Flex>
+                      </Stack>
+                    </Link>
+                  </PopoverContent>
+                </Popover>
               </li>
               <li>
                 <Link

@@ -58,7 +58,7 @@ export default function Products() {
       for (let product of data as ProductDetails[]) {
         products.push({
           productId: Number((product.productId as any)._hex),
-          title: product.name,
+          name: product.name,
           description: product.description,
           imageURL: product.imageURL,
         });

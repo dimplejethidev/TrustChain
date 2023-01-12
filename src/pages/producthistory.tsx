@@ -13,6 +13,7 @@ import {
   useAccount,
   useContractRead
 } from "wagmi";
+import { useRouter } from 'next/router';
 
 interface ProductDetails {
   name: string;
@@ -52,9 +53,16 @@ const Producthistory: NextPage = () => {
    
       setProductData({ ...productData, name, description, imageURL, locationStatuses, timestamp, locationURL })
     }
-  }, [data, isLoading, productData])
+  }, [data, isLoading])
 
- 
+  const router = useRouter();
+  const productId = router.query.productId as string;
+
+  useEffect(() => {
+    if (productId) {
+      setProductData({ ...productData, productid: productId })
+    }
+  }, [productId])
 
   return (
     <>
