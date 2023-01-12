@@ -110,7 +110,7 @@ const Updateproduct: NextPage = () => {
         locationURL,
       });
     }
-  }, [data, isLoading, productData]);
+  }, [ isLoading]);
 
   useEffect(() => {
     if (isSuccess) {
@@ -136,7 +136,7 @@ const Updateproduct: NextPage = () => {
       onClose();
       write?.();
     }
-  }, [userAddress, address, toast, onClose, write]);
+  }, [userAddress]);
 
   return (
     <>
