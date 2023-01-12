@@ -209,8 +209,7 @@ const Updateproduct: NextPage = () => {
                   <div className="relative rounded-lg shadow-lg backdrop-blur-lg bg-white/80 dark:bg-gray-700/60">
                     <div className="px-6 py-6 lg:px-8">
                     <p className="text-xl font-medium title-font mb-4 text-[#D27D2D]">{(productData as any).name}</p>
-                      <div className="p-2 flex flex-col">
-                       
+                      <div className="p-2 flex flex-col">                       
                         <ProductDetail label="" value={(productData as any).imageURL} type="image" />                      </div>
                     </div>
                   </div>
