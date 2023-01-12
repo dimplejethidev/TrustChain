@@ -7,6 +7,7 @@ interface InputProps {
   label?: string;
   placeholder?: string;
   type?: string;
+  value?: string;
   onChange: (e: any) => void;
 }
 
@@ -16,6 +17,7 @@ const Input = ({
   label,
   placeholder,
   type,
+  value,
   onChange,
 }: InputProps) => {
   return (
@@ -33,6 +35,7 @@ const Input = ({
         focusBorderColor="#a13bf7"
         placeholder={placeholder}
         type={type}
+        value={value}
       />
     </div>
   );
