@@ -153,7 +153,7 @@ const Updateproduct: NextPage = () => {
             <div className="w-full md:w-1/2">
               <div className="w-full pl-0 p-4 overflow-x-hidden overflow-y-auto md:inset-0 justify-center flex md:h-full">
                 <div className="relative w-full h-full md:h-auto">
-                  <div className="relative bg-white bg-opacity-30 rounded-lg shadow dark:bg-gray-700 dark:bg-opacity-20">
+                  <div className="relative bg-white backdrop-blur-sm bg-opacity-20 rounded-lg shadow dark:bg-gray-700 dark:bg-opacity-20">
                     <div className="px-6 py-6 lg:px-8">
                       <form className="space-y-6">
                         <Input
@@ -206,9 +206,9 @@ const Updateproduct: NextPage = () => {
             <div className="w-full md:w-1/2">
               <div className="w-full pl-0 p-4 overflow-x-hidden overflow-y-auto md:inset-0 justify-center flex md:h-full">
               <div className="relative w-full h-full md:h-auto">
-                  <div className="relative rounded-lg shadow-lg backdrop-blur-lg bg-white/80 dark:bg-gray-700/60">
+                  <div className="relative rounded-lg shadow-lg backdrop-blur-sm bg-white/30 bg-opacity-30 dark:bg-gray-700/30 dark:bg-opacity-30">
                     <div className="px-6 py-6 lg:px-8">
-                    <p className="text-xl font-medium title-font mb-4 text-[#D27D2D]">{(productData as any).name}</p>
+                    <p className="text-xl font-medium title-font mb-4 text-[#a13bf7]">{(productData as any).name}</p>
                       <div className="p-2 flex flex-col">                       
                         <ProductDetail label="" value={(productData as any).imageURL} type="image" />                      </div>
                     </div>

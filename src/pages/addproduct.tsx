@@ -133,7 +133,7 @@ const Addproduct: NextPage = () => {
           <div className="flex flex-col text-center w-full">
             <div className="w-full py-4 overflow-x-hidden overflow-y-auto md:inset-0 justify-center flex md:h-full">
               <div className="relative w-full h-full md:h-auto">
-                <div className="relative bg-white bg-opacity-30 rounded-lg shadow dark:bg-gray-700">
+                <div className="relative bg-white backdrop-blur-sm bg-opacity-20 rounded-lg shadow dark:bg-gray-700 dark:bg-opacity-20">
                   <div className="px-6 py-6 lg:px-8">
                     <form className="space-y-6">
                       <div className="flex flex-col md:flex-row md:space-x-5">

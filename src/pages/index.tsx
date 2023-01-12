@@ -14,7 +14,7 @@ interface FeatureCardProps {
 
 const FeatureCard = ({title, desc, icon}: FeatureCardProps) => {
   return (
-    <div className="relative backdrop-blur-lg bg-white/40 dark:bg-gray-700 p-5 rounded-lg">
+    <div className="relative backdrop-blur-sm bg-white/40 bg-opacity-20 dark:bg-gray-700 dark:bg-opacity-30 p-5 rounded-lg">
       <dt className="flex flex-col items-center md:items-start">
         <div className="flex items-center justify-center h-12 w-12 rounded-md bg-[#732fff] dark:bg-[#d97dff] text-white">
           {icon}

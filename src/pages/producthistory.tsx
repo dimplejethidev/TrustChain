@@ -70,7 +70,7 @@ const Producthistory: NextPage = () => {
           <div className="flex flex-col text-center w-full">
             <div className="w-full py-4 overflow-x-hidden overflow-y-auto md:inset-0 justify-center flex md:h-full">
               <div className="relative w-full h-full md:h-auto">
-                <div className="relative bg-white bg-opacity-30 rounded-lg shadow dark:bg-gray-700 dark:bg-opacity-30">
+                <div className="relative bg-white bg-opacity-20 backdrop-blur-sm rounded-lg shadow dark:bg-gray-700 dark:bg-opacity-20">
                   <div className="px-6 py-6 lg:px-8">
                     <div className="flex flex-col md:flex-row space-x-5">
                       <div className="w-full md:w-1/2 space-y-6">
@@ -85,7 +85,7 @@ const Producthistory: NextPage = () => {
                           />
                         </form>
                         <div>
-                          <p className="text-xl font-medium title-font mb-4 text-[#D27D2D]">{(productData as any).name}</p>
+                          <p className="text-xl font-medium title-font mb-4 text-[#a13bf7]">{(productData as any).name}</p>
                           <div className="p-2 flex flex-col">
                             <ProductDetail label="" value={(productData as any).imageURL} type="image" />
                           </div>
