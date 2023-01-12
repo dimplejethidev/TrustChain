@@ -57,16 +57,14 @@ export default function Products() {
       let products = [];
       for (let product of data as ProductDetails[]) {
         products.push({
-          productId: product.productId,
-          name: product.name,
+          productId: Number((product.productId as any)._hex),
+          title: product.name,
           description: product.description,
           imageURL: product.imageURL,
-          locationStatuses: product.locationStatuses,
-          timestamp: product.timestamp,
-          locationURL: product.locationURL,
         });
       }
-      console.log(products)
+      setProductData(products);
+      
       // const productDetails = data as ProductDetails[];
       // setProductHistory(
       //   locationStatuses.map((location: string, index: number) => {
@@ -79,13 +77,12 @@ export default function Products() {
       //     };
       //   })
       // );
-      setProductData(products);
     }
   }, [data, isLoading]);
 
-  // useEffect(() => {
-  //   console.log(productData);
-  // }, [productData]);
+  useEffect(() => {
+    console.log(productData);
+  }, [productData]);
 
   return (
     <SimpleGrid
@@ -95,7 +92,7 @@ export default function Products() {
       my={16}
       mx={"auto"}
     >
-      {cardInfo.map((products: any, index: number) => (
+      {productData.map((products: any, index: number) => (
         <ProductCard {...products} index={index} key={index} />
       ))}
     </SimpleGrid>
