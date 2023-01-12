@@ -26,11 +26,17 @@ const Header = () => {
 
   return (
     <>
-      <nav className="fixed z-10 w-full mx-auto bg-pink-300 bg-opacity-81 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800 dark:bg-opacity-60 drop-shadow-lg dark:drop-shadow-[0_20px_35px_rgba(255,255,255,0.25)]">
+      <nav className="fixed z-10 w-full mx-auto bg-pink-300 bg-opacity-80 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-black dark:bg-opacity-80 drop-shadow-lg dark:drop-shadow-[0_10px_25px_rgba(255,255,255,0.25)]">
         <div className="max-w-[1080px] container flex flex-wrap justify-between items-center mx-auto">
           <Link href="/" className="flex items-center flex-1">
             <span className="flex flex-row items-center self-center text-xl font-bold whitespace-nowrap text-[#9504ff] hover:text-[#a137df] dark:text-[#c26fff]">
-              <Image src="/provenanceLogo.png" width="60" height="60" className="mr-4" alt="Provenance" />
+              <Image
+                src="/provenanceLogo.png"
+                width="60"
+                height="60"
+                className="mr-4"
+                alt="Provenance"
+              />
               Provenance
             </span>
           </Link>
@@ -103,6 +109,19 @@ const Header = () => {
                   aria-current="page"
                 >
                   <b>Update Status</b>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products"
+                  className={`${
+                    pathname === "/products"
+                      ? "text-[#a137df] dark:text-white"
+                      : "text-gray-700"
+                  } block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#9504ff] md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                  aria-current="page"
+                >
+                  <b>Products</b>
                 </Link>
               </li>
               <li>
