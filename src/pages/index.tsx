@@ -2,8 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import { NextPage } from 'next';
-import { GiDigitalTrace } from 'react-icons/gi';
-import { SiTrustpilot } from 'react-icons/si';
+import { BsFillFileEarmarkLockFill, BsFillCheckCircleFill } from 'react-icons/bs';
 import { MdSecurity } from 'react-icons/md';
 
 interface FeatureCardProps {
@@ -16,7 +15,7 @@ const FeatureCard = ({title, desc, icon}: FeatureCardProps) => {
   return (
     <div className="relative backdrop-blur-sm bg-white/40 bg-opacity-20 dark:bg-gray-700 dark:bg-opacity-30 p-5 rounded-lg">
       <dt className="flex flex-col items-center md:items-start">
-        <div className="flex items-center justify-center h-12 w-12 rounded-md bg-[#732fff] dark:bg-[#d97dff] text-white">
+        <div className="flex items-center justify-center h-12 w-12 rounded-md bg-[#732fff] dark:bg-[#a13bf7] text-white">
           {icon}
         </div>
         <p className="pt-5 text-lg leading-6 font-medium font-semibold text-[#732fff] dark:text-[#e99aff]">
@@ -73,9 +72,9 @@ const Home: NextPage = () => {
             </h1>
           </div>
           <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-10">
-            <FeatureCard icon={<GiDigitalTrace size={25} />} title="Traceability" desc="The user can track the movement and ownership of a product through its life cycle, creating a transparent record of its history." />
-            <FeatureCard icon={<SiTrustpilot size={25} />} title="Authenticity" desc="By providing a transparent and secure record of the history, it can verify its authenticity and prevent the sale of counterfeit goods." />
-            <FeatureCard icon={<MdSecurity size={25} />} title="Security" desc="The decentralized nature provides a secure and tamper-proof record of transactions, helping to prevent fraud and errors." />
+            <FeatureCard icon={<BsFillFileEarmarkLockFill size={25} />} title="Zero-knowledge Proof" desc="Products are operated only by authorized entity leveraging Polygon ID. It adds extra security layer over role's permission." />
+            <FeatureCard icon={<MdSecurity size={25} />} title="Security" desc="Everything on-chain! Prevent any forgery and errors while authenticating a product. No one can change provenance except the authorized person." />
+            <FeatureCard icon={<BsFillCheckCircleFill size={25} />} title="Verification" desc="It also ensures that the right person is adding or updating the product. User can explore the listed products and check the provenance." />
           </dl>
         </div>
       </main>
