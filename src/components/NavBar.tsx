@@ -65,20 +65,18 @@ const Header = () => {
             </button>
           </div>
           <div
-            className={`${
-              isOpenMenu ? "block" : "hidden"
-            } justify-between items-center w-full md:flex md:w-auto md:order-1`}
+            className={`${isOpenMenu ? "block" : "hidden"
+              } justify-between items-center w-full md:flex md:w-auto md:order-1`}
           >
             <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
               <li></li>
               <li>
                 <Link
                   href="/"
-                  className={`${
-                    pathname === "/"
+                  className={`${pathname === "/"
                       ? "text-[#a137df] dark:text-white"
                       : "text-gray-700"
-                  } block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#9504ff] md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                    } block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#9504ff] md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
                   aria-current="page"
                 >
                   <b>Home</b>
@@ -87,11 +85,10 @@ const Header = () => {
               <li>
                 <Link
                   href="/explore"
-                  className={`${
-                    pathname === "/products"
+                  className={`${pathname === "/products"
                       ? "text-[#a137df] dark:text-white"
                       : "text-gray-700"
-                  } block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#9504ff] md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                    } block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#9504ff] md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
                   aria-current="page"
                 >
                   <b>Explore</b>
@@ -102,11 +99,10 @@ const Header = () => {
                   <PopoverTrigger>
                     <Link
                       href="#"
-                      className={`${
-                        pathname === "#"
+                      className={`${pathname === "#"
                           ? "text-[#a137df] dark:text-white"
                           : "text-gray-700"
-                      } block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#9504ff] md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                        } block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#9504ff] md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
                       aria-current="page"
                     >
                       <b>Register</b>
@@ -115,7 +111,7 @@ const Header = () => {
                   <PopoverContent className="bg-pink-100 bg-opacity-80 box-border h-25 w-35 dark:bg-black/40 dark:bg-opacity-80 dark:text-white/80 shadow-lg rounded-xl border-1 p-4 min-w-sm">
                     <Link
                       target={"_blank"}
-                      href="https://platform-test.polygonid.com/claim-link/0449bb5d-5d0d-42d5-bf9d-a759fa26675e"
+                      href="https://platform-test.polygonid.com/claim-link/2ed5b81c-e88e-4fea-843c-06f607b1d94c"
                       className="group display-block p-2 rounded-md hover:bg-pink-200 hover:text-[#a13bf7]"
                     >
                       <Stack direction={"row"} align={"center"}>
@@ -130,7 +126,8 @@ const Header = () => {
                       </Stack>
                     </Link>
                     <Link
-                      href="https://platform-test.polygonid.com/claim-link/f0042f20-8d6a-49e6-950b-b59014c3067c"
+                      target={"_blank"}
+                      href="https://platform-test.polygonid.com/claim-link/12aed2db-ff18-45eb-bd7a-480320f3c6c8"
                       className="group display-block p-2 rounded-md hover:bg-pink-200 hover:text-[#a13bf7]"
                     >
                       <Stack direction={"row"} align={"center"}>
@@ -152,11 +149,10 @@ const Header = () => {
                   <PopoverTrigger>
                     <Link
                       href="#"
-                      className={`${
-                        pathname === "#"
+                      className={`${pathname === "#"
                           ? "text-[#a137df] dark:text-white"
                           : "text-gray-700"
-                      } block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#9504ff] md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                        } block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#9504ff] md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
                       aria-current="page"
                     >
                       <b>Products</b>
@@ -199,11 +195,10 @@ const Header = () => {
               <li>
                 <Link
                   href="/producthistory"
-                  className={`${
-                    pathname === "/producthistory"
+                  className={`${pathname === "/producthistory"
                       ? "text-[#a137df] dark:text-white"
                       : "text-gray-700"
-                  } block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#9504ff] md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
+                    } block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#9504ff] md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
                   aria-current="page"
                 >
                   <b>Product History</b>
