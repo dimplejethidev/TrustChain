@@ -30,6 +30,7 @@ import {
   Box,
   Image,
 } from "@chakra-ui/react";
+import { CONTRACT_ADDRESS } from "../utils/contractAddress";
 
 interface ProductDetails {
   name: string;
@@ -51,14 +52,14 @@ const Updateproduct: NextPage = () => {
   const toast = useToast();
 
   const { data, isError, isLoading } = useContractRead({
-    address: "0x3f4210Da2916100118DE851C5ff72B5B9A707E21",
+    address: CONTRACT_ADDRESS,
     abi: logchainABI,
     functionName: "getProduct",
     args: [productID],
   });
 
   const { config } = usePrepareContractWrite({
-    address: "0x3f4210Da2916100118DE851C5ff72B5B9A707E21",
+    address: CONTRACT_ADDRESS,
     abi: logchainABI,
     functionName: "addLocationStatus",
     args: [productID, productLocation, locationURL],
@@ -110,7 +111,7 @@ const Updateproduct: NextPage = () => {
         locationURL,
       });
     }
-  }, [ isLoading]);
+  }, [data]);
 
   useEffect(() => {
     if (isSuccess) {

@@ -14,6 +14,7 @@ import {
   useContractRead
 } from "wagmi";
 import { useRouter } from 'next/router';
+import { CONTRACT_ADDRESS } from '../utils/contractAddress';
 
 interface ProductDetails {
   name: string;
@@ -26,8 +27,6 @@ interface ProductDetails {
 
 const Producthistory: NextPage = () => {
   const [productData, setProductData] = useState({});
-  const [productID, setProductID] = useState(0);
-  const [productLocation, setProuctLocation] = useState('');
   const [productHistory, setProductHistory] = useState([{ title: "Created Location", time: "", Location: "" }]);
   const handleData = (e: any) => {
     setProductData({ ...productData, [e.target.name]: e.target.value })
@@ -35,7 +34,7 @@ const Producthistory: NextPage = () => {
   
  
   const { data, isError, isLoading } = useContractRead({
-    address: '0x3f4210Da2916100118DE851C5ff72B5B9A707E21',
+    address: CONTRACT_ADDRESS,
     abi: logchainABI,
     functionName: 'getProduct',
     args: [parseInt((productData as any).productid)]
@@ -89,6 +88,7 @@ const Producthistory: NextPage = () => {
                             label="Product ID"
                             type="text"
                             placeholder="Product ID"
+                            value={(productData as any).productid}
                             onChange={handleData}
                           />
                         </form>

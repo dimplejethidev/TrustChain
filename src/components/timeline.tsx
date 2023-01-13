@@ -13,7 +13,7 @@ const TimelineItem = ({title, time: subtitle, Location: des}: TimelineProps) => 
         <h2 className="text-[#a13bf7]">{title}</h2>
         <a 
         
-        href={des}
+        href={des} target="_blank" rel="noreferrer"
         className="text-gray-700 dark:text-white">Location</a>
       </div>
       <div className="left_content">

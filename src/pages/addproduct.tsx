@@ -31,6 +31,7 @@ import {
   Image,
 } from "@chakra-ui/react";
 import { QRCode } from "react-qr-svg";
+import { CONTRACT_ADDRESS } from "../utils/contractAddress";
 
 const Addproduct: NextPage = () => {
   const [productData, setProductData] = useState({});
@@ -62,7 +63,7 @@ const Addproduct: NextPage = () => {
   const toast = useToast();
 
   const { config } = usePrepareContractWrite({
-    address: "0x3f4210Da2916100118DE851C5ff72B5B9A707E21",
+    address: CONTRACT_ADDRESS,
     abi: logchainABI,
     functionName: "addProduct",
     args: [
