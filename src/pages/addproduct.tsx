@@ -16,7 +16,7 @@ import {
 import ABI from "../contracts/polygonID_ABI.json";
 import { useToast } from "@chakra-ui/react";
 import { Web3Storage } from "web3.storage";
-import logchainABI from "../contracts/logchain.json";
+import trustchainABI from "../contracts/trustchain.json";
 import manufacturerQR from "../contracts/manufacturer/manufacturer.json";
 import { useDisclosure } from "@chakra-ui/react";
 import {
@@ -29,6 +29,7 @@ import {
   ModalCloseButton,
   Box,
   Image,
+  Text,
 } from "@chakra-ui/react";
 import { QRCode } from "react-qr-svg";
 import { CONTRACT_ADDRESS } from "../utils/contractAddress";
@@ -39,7 +40,6 @@ const Addproduct: NextPage = () => {
   const [image, setImage] = useState("");
 
   const [userAddress, setUserAddress] = useState("");
-  const [eventHappened, setEventHappened] = useState(false);
 
   const handleData = (e: any) => {
     setProductData({ ...productData, [e.target.name]: e.target.value });
@@ -64,7 +64,7 @@ const Addproduct: NextPage = () => {
 
   const { config } = usePrepareContractWrite({
     address: CONTRACT_ADDRESS,
-    abi: logchainABI,
+    abi: trustchainABI,
     functionName: "addProduct",
     args: [
       (productData as any).productid,
@@ -210,14 +210,18 @@ const Addproduct: NextPage = () => {
                           <ModalContent>
                             <ModalHeader>
                               {" "}
-                              Verify your Manufacturer Role{" "}
+                              Verify your Manufacturer Role
                             </ModalHeader>
                             <ModalCloseButton />
                             <ModalBody>
+                              <Text className="font-semibold text-sm text-gray-500 text-center pb-5 -pt-5">
+                                Please verify with the same wallet address that
+                                is connected to this site.
+                              </Text>
                               <Box className="flex flex-col items-center justify-center">
                                 <QRCode
                                   level="Q"
-                                  style={{ width: 256 }}
+                                  style={{ width: 350 }}
                                   value={JSON.stringify(manufacturerQR)}
                                 />
                               </Box>

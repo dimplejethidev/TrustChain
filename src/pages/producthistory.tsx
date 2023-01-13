@@ -1,20 +1,15 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
-import { NextPage } from 'next';
-import Head from 'next/head';
-import Input from '../components/form-elements/input';
-import Header from '../components/form-components/Header';
-import Timeline from '../components/timeline';
-import ProductDetail from '../components/product-detail';
-import logchainABI from "../contracts/logchain.json";
-import {
-  useContractWrite,
-  useWaitForTransaction,
-  useAccount,
-  useContractRead
-} from "wagmi";
-import { useRouter } from 'next/router';
-import { CONTRACT_ADDRESS } from '../utils/contractAddress';
+import React from "react";
+import { useState, useEffect } from "react";
+import { NextPage } from "next";
+import Head from "next/head";
+import Input from "../components/form-elements/input";
+import Header from "../components/form-components/Header";
+import Timeline from "../components/timeline";
+import ProductDetail from "../components/product-detail";
+import trustchainABI from "../contracts/trustchain.json";
+import { useContractRead } from "wagmi";
+import { useRouter } from "next/router";
+import { CONTRACT_ADDRESS } from "../utils/contractAddress";
 
 interface ProductDetails {
   name: string;
@@ -27,41 +22,58 @@ interface ProductDetails {
 
 const Producthistory: NextPage = () => {
   const [productData, setProductData] = useState({});
-  const [productHistory, setProductHistory] = useState([{ title: "Created Location", time: "", Location: "" }]);
+  const [productHistory, setProductHistory] = useState([
+    { title: "City", time: "dd/mm/yyyy, hh:mm:ss", Location: "" },
+  ]);
   const handleData = (e: any) => {
-    setProductData({ ...productData, [e.target.name]: e.target.value })
-  }
-  
- 
+    setProductData({ ...productData, [e.target.name]: e.target.value });
+  };
+
   const { data, isError, isLoading } = useContractRead({
     address: CONTRACT_ADDRESS,
-    abi: logchainABI,
-    functionName: 'getProduct',
-    args: [parseInt((productData as any).productid)]
-  })
+    abi: trustchainABI,
+    functionName: "getProduct",
+    args: [parseInt((productData as any).productid)],
+  });
 
   useEffect(() => {
-    if (data as ProductDetails && !isLoading) {
+    if ((data as ProductDetails) && !isLoading) {
+      const {
+        name,
+        description,
+        imageURL,
+        locationStatuses,
+        timestamp,
+        locationURL,
+      } = data as ProductDetails;
+      setProductHistory(
+        locationStatuses.map((location: string, index: number) => {
+          const convertedTime = timestamp[index];
+          const date = new Date(convertedTime * 1000).toLocaleString();
+          return { title: location, time: date, Location: locationURL[index] };
+        })
+      );
 
-      const { name, description, imageURL, locationStatuses, timestamp, locationURL } = data as ProductDetails;
-      setProductHistory(locationStatuses.map((location: string, index: number) => {
-       const convertedTime = timestamp[index];
-       const date = new Date(convertedTime * 1000).toLocaleString();
-        return { title: location, time: date, Location: locationURL[index] }
-      }))
-   
-      setProductData({ ...productData, name, description, imageURL, locationStatuses, timestamp, locationURL })
+      setProductData({
+        ...productData,
+        name,
+        description,
+        imageURL,
+        locationStatuses,
+        timestamp,
+        locationURL,
+      });
     }
-  }, [data, isLoading])
+  }, [data, isLoading]);
 
   const router = useRouter();
   const productId = router.query.productId as string;
 
   useEffect(() => {
     if (productId) {
-      setProductData({ ...productData, productid: productId })
+      setProductData({ ...productData, productid: productId });
     }
-  }, [productId])
+  }, [productId]);
 
   return (
     <>
@@ -93,9 +105,15 @@ const Producthistory: NextPage = () => {
                           />
                         </form>
                         <div>
-                          <p className="text-xl font-medium title-font mb-4 text-[#a13bf7]">{(productData as any).name}</p>
+                          <p className="text-xl font-medium title-font mb-4 text-[#a13bf7]">
+                            {(productData as any).name}
+                          </p>
                           <div className="p-2 flex flex-col">
-                            <ProductDetail label="" value={(productData as any).imageURL} type="image" />
+                            <ProductDetail
+                              label=""
+                              value={(productData as any).imageURL}
+                              type="image"
+                            />
                           </div>
                         </div>
                       </div>
@@ -111,7 +129,7 @@ const Producthistory: NextPage = () => {
         </div>
       </main>
     </>
-  )
-}
+  );
+};
 
-export default Producthistory
+export default Producthistory;

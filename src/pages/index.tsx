@@ -34,8 +34,8 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Provenance</title>
-        <meta name="description" content="Provenance" />
+        <title>TrustChain</title>
+        <meta name="description" content="TrustChain" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -45,7 +45,7 @@ const Home: NextPage = () => {
             <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
               <span className="block xl:inline text-gray-800 dark:text-white">Welcome to</span>
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#8b00ff] to-[#a75eff] dark:from-[#8c2bff] dark:to-[#d97dff] pb-4">
-                Provenance
+                TrustChain
               </span>
               <span className="block font-semibold text-gray-200 dark:text-[#e99aff] font-medium text-2xl">
                 Decentralized Application
