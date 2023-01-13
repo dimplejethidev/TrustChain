@@ -16,7 +16,6 @@ import {
   PopoverTrigger,
   PopoverContent,
   useColorModeValue,
-  useBreakpointValue,
 } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 
@@ -44,13 +43,13 @@ const Header = () => {
           <Link href="/" className="flex items-center flex-1">
             <span className="flex flex-row items-center self-center text-xl font-bold whitespace-nowrap text-[#9504ff] hover:text-[#a137df] dark:text-[#c26fff]">
               <Image
-                src="/provenanceLogo.png"
+                src="/trustChainLogo.png"
                 width="60"
                 height="60"
                 className="mr-4"
-                alt="Provenance"
+                alt="TrustChainLogo"
               />
-              Provenance
+              TrustChain
             </span>
           </Link>
           <div className="flex md:order-2" style={{ marginLeft: "2rem" }}>
@@ -103,95 +102,45 @@ const Header = () => {
                   <PopoverTrigger>
                     <Link
                       href="#"
-                      className="block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#9504ff] md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                      className={`${
+                        pathname === "#"
+                          ? "text-[#a137df] dark:text-white"
+                          : "text-gray-700"
+                      } block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#9504ff] md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
                       aria-current="page"
                     >
                       <b>Register</b>
                     </Link>
                   </PopoverTrigger>
-                  <PopoverContent
-                    border={0}
-                    boxShadow={"xl"}
-                    bg={useColorModeValue("white", "gray.800")}
-                    p={4}
-                    rounded={"xl"}
-                    minW={"sm"}
-                  >
+                  <PopoverContent className="bg-pink-100 bg-opacity-80 box-border h-25 w-35 dark:bg-black/40 dark:bg-opacity-80 dark:text-white/80 shadow-lg rounded-xl border-1 p-4 min-w-sm">
                     <Link
+                      target={"_blank"}
                       href="https://platform-test.polygonid.com/claim-link/0449bb5d-5d0d-42d5-bf9d-a759fa26675e"
-                      role={"group"}
-                      display={"block"}
-                      p={2}
-                      rounded={"md"}
-                      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+                      className="group display-block p-2 rounded-md hover:bg-pink-200 hover:text-[#a13bf7]"
                     >
                       <Stack direction={"row"} align={"center"}>
                         <Box>
-                          <Text
-                            transition={"all .3s ease"}
-                            _groupHover={{ color: "pink.400" }}
-                            fontWeight={500}
-                          >
+                          <Text className="font-semibold pb-1 transition ease-in-out delay-10 group-hover:pink-400">
                             {"Manufacturer"}
                           </Text>
                         </Box>
-                        <Flex
-                          transition={"all .3s ease"}
-                          transform={"translateX(-10px)"}
-                          opacity={0}
-                          _groupHover={{
-                            opacity: "100%",
-                            transform: "translateX(0)",
-                          }}
-                          justify={"flex-end"}
-                          align={"center"}
-                          flex={1}
-                        >
-                          <Icon
-                            color={"pink.400"}
-                            w={5}
-                            h={5}
-                            as={ChevronRightIcon}
-                          />
+                        <Flex className="transition ease-in-out delay-10 opacity-0 -translate-x-10 group-hover:opacity-100 group-hover:translate-x-0 justify-flex-end flex self-center flex-1">
+                          <Icon w={15} h={15} as={ChevronRightIcon} />
                         </Flex>
                       </Stack>
                     </Link>
                     <Link
                       href="https://platform-test.polygonid.com/claim-link/f0042f20-8d6a-49e6-950b-b59014c3067c"
-                      role={"group"}
-                      display={"block"}
-                      p={2}
-                      rounded={"md"}
-                      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+                      className="group display-block p-2 rounded-md hover:bg-pink-200 hover:text-[#a13bf7]"
                     >
                       <Stack direction={"row"} align={"center"}>
                         <Box>
-                          <Text
-                            transition={"all .3s ease"}
-                            _groupHover={{ color: "pink.400" }}
-                            fontWeight={500}
-                          >
+                          <Text className="font-semibold transition ease-in-out delay-10 group-hover:pink-400">
                             {"Distrubutor"}
                           </Text>
                         </Box>
-                        <Flex
-                          transition={"all .3s ease"}
-                          transform={"translateX(-10px)"}
-                          opacity={0}
-                          _groupHover={{
-                            opacity: "100%",
-                            transform: "translateX(0)",
-                          }}
-                          justify={"flex-end"}
-                          align={"center"}
-                          flex={1}
-                        >
-                          <Icon
-                            color={"pink.400"}
-                            w={5}
-                            h={5}
-                            as={ChevronRightIcon}
-                          />
+                        <Flex className="transition ease-in-out delay-10 opacity-0 -translate-x-10 group-hover:opacity-100 group-hover:translate-x-0 justify-flex-end flex self-center flex-1">
+                          <Icon w={15} h={15} as={ChevronRightIcon} />
                         </Flex>
                       </Stack>
                     </Link>
@@ -203,95 +152,44 @@ const Header = () => {
                   <PopoverTrigger>
                     <Link
                       href="#"
-                      className="block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#9504ff] md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                      className={`${
+                        pathname === "#"
+                          ? "text-[#a137df] dark:text-white"
+                          : "text-gray-700"
+                      } block py-2 pr-4 pl-3 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-[#9504ff] md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700`}
                       aria-current="page"
                     >
                       <b>Products</b>
                     </Link>
                   </PopoverTrigger>
-                  <PopoverContent
-                    border={0}
-                    boxShadow={"xl"}
-                    bg={useColorModeValue("white", "gray.800")}
-                    p={4}
-                    rounded={"xl"}
-                    minW={"sm"}
-                  >
+                  <PopoverContent className="bg-pink-100 bg-opacity-80 box-border h-25 w-35 dark:bg-black/40 dark:bg-opacity-80 dark:text-white/80 shadow-lg rounded-xl border-1 p-4 min-w-sm">
                     <Link
                       href="/addproduct"
-                      role={"group"}
-                      display={"block"}
-                      p={2}
-                      rounded={"md"}
-                      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+                      className="group display-block p-2 rounded-md hover:bg-pink-200 hover:text-[#a13bf7]"
                     >
                       <Stack direction={"row"} align={"center"}>
                         <Box>
-                          <Text
-                            transition={"all .3s ease"}
-                            _groupHover={{ color: "pink.400" }}
-                            fontWeight={500}
-                          >
+                          <Text className="font-semibold pb-1 transition ease-in-out delay-10 group-hover:pink-400">
                             {"Add Product"}
                           </Text>
                         </Box>
-                        <Flex
-                          transition={"all .3s ease"}
-                          transform={"translateX(-10px)"}
-                          opacity={0}
-                          _groupHover={{
-                            opacity: "100%",
-                            transform: "translateX(0)",
-                          }}
-                          justify={"flex-end"}
-                          align={"center"}
-                          flex={1}
-                        >
-                          <Icon
-                            color={"pink.400"}
-                            w={5}
-                            h={5}
-                            as={ChevronRightIcon}
-                          />
+                        <Flex className="transition ease-in-out delay-10 opacity-0 -translate-x-10 group-hover:opacity-100 group-hover:translate-x-0 justify-flex-end flex self-center flex-1">
+                          <Icon w={15} h={15} as={ChevronRightIcon} />
                         </Flex>
                       </Stack>
                     </Link>
                     <Link
                       href="/updateproduct"
-                      role={"group"}
-                      display={"block"}
-                      p={2}
-                      rounded={"md"}
-                      _hover={{ bg: useColorModeValue("pink.50", "gray.900") }}
+                      className="group display-block p-2 rounded-md hover:bg-pink-200 hover:text-[#a13bf7]"
                     >
                       <Stack direction={"row"} align={"center"}>
                         <Box>
-                          <Text
-                            transition={"all .3s ease"}
-                            _groupHover={{ color: "pink.400" }}
-                            fontWeight={500}
-                          >
+                          <Text className="font-semibold pb-1 transition ease-in-out delay-10 group-hover:pink-400">
                             {"Update Status"}
                           </Text>
                         </Box>
-                        <Flex
-                          transition={"all .3s ease"}
-                          transform={"translateX(-10px)"}
-                          opacity={0}
-                          _groupHover={{
-                            opacity: "100%",
-                            transform: "translateX(0)",
-                          }}
-                          justify={"flex-end"}
-                          align={"center"}
-                          flex={1}
-                        >
-                          <Icon
-                            color={"pink.400"}
-                            w={5}
-                            h={5}
-                            as={ChevronRightIcon}
-                          />
+                        <Flex className="transition ease-in-out delay-10 opacity-0 -translate-x-10 group-hover:opacity-100 group-hover:translate-x-0 justify-flex-end flex self-center flex-1">
+                          <Icon w={15} h={15} as={ChevronRightIcon} />
                         </Flex>
                       </Stack>
                     </Link>

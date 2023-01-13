@@ -8,8 +8,8 @@ import {
   Center,
   useColorModeValue,
   HStack,
-} from '@chakra-ui/react';
-import { BsArrowUpRight } from 'react-icons/bs';
+} from "@chakra-ui/react";
+import { BsArrowUpRight } from "react-icons/bs";
 import { useRouter } from "next/router";
 
 interface ProductProps {
@@ -65,16 +65,19 @@ export default function ProductCard(props: ProductProps) {
             {description}
           </Text>
         </Box>
-        <HStack borderTop={'1px'} color="black">
+        <HStack borderTop={"1px"} color="black">
           <Flex
             p={4}
             alignItems="center"
-            onClick={() => {router.push(`/producthistory?productId=${productId}`)}}
-            justifyContent={'space-between'}
-            roundedBottom={'sm'}
-            cursor={'pointer'}
-            w="full">
-            <Text fontSize={'md'} fontWeight={'semibold'}>
+            onClick={() => {
+              router.push(`/producthistory?productId=${productId}`);
+            }}
+            justifyContent={"space-between"}
+            roundedBottom={"sm"}
+            cursor={"pointer"}
+            w="full"
+          >
+            <Text fontSize={"md"} fontWeight={"semibold"}>
               View more
             </Text>
             <BsArrowUpRight />

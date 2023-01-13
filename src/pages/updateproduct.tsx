@@ -1,15 +1,15 @@
-import { NextPage } from 'next';
-import React from 'react';
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
-import Input from '../components/form-elements/input';
-import Button from '../components/form-elements/button';
-import Header from '../components/form-components/Header';
-import ProductDetail from '../components/product-detail';
-import distributorQR from '../contracts/distributor/distributor.json';
+import { NextPage } from "next";
+import React from "react";
+import { useState, useEffect } from "react";
+import Head from "next/head";
+import Input from "../components/form-elements/input";
+import Button from "../components/form-elements/button";
+import Header from "../components/form-components/Header";
+import ProductDetail from "../components/product-detail";
+import distributorQR from "../contracts/distributor/distributor.json";
 import { useDisclosure, useToast } from "@chakra-ui/react";
 import { QRCode } from "react-qr-svg";
-import logchainABI from "../contracts/logchain.json";
+import trustchainABI from "../contracts/trustchain.json";
 import ABI from "../contracts/polygonID_ABI.json";
 import {
   useContractEvent,
@@ -17,7 +17,7 @@ import {
   useContractWrite,
   useWaitForTransaction,
   useAccount,
-  useContractRead
+  useContractRead,
 } from "wagmi";
 import {
   Modal,
@@ -28,7 +28,7 @@ import {
   ModalBody,
   ModalCloseButton,
   Box,
-  Image,
+  Text,
 } from "@chakra-ui/react";
 import { CONTRACT_ADDRESS } from "../utils/contractAddress";
 
@@ -44,7 +44,7 @@ interface ProductDetails {
 const Updateproduct: NextPage = () => {
   const [productData, setProductData] = useState({});
   const [productID, setProductID] = useState(0);
-  const [productLocation, setProuctLocation] = useState('');
+  const [productLocation, setProuctLocation] = useState("");
   const [locationURL, setLocationURL] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [userAddress, setUserAddress] = useState("");
@@ -53,14 +53,14 @@ const Updateproduct: NextPage = () => {
 
   const { data, isError, isLoading } = useContractRead({
     address: CONTRACT_ADDRESS,
-    abi: logchainABI,
+    abi: trustchainABI,
     functionName: "getProduct",
     args: [productID],
   });
 
   const { config } = usePrepareContractWrite({
     address: CONTRACT_ADDRESS,
-    abi: logchainABI,
+    abi: trustchainABI,
     functionName: "addLocationStatus",
     args: [productID, productLocation, locationURL],
   });
@@ -68,14 +68,16 @@ const Updateproduct: NextPage = () => {
 
   const { isLoading: isLoadingUpdate, isSuccess } = useWaitForTransaction({
     hash: updateData?.hash,
-  })
+  });
 
   useEffect(() => {
     if ("geolocation" in navigator) {
       // Retrieve latitude & longitude coordinates from `navigator.geolocation` Web API
       navigator.geolocation.getCurrentPosition(({ coords }) => {
         const { latitude, longitude } = coords;
-        setLocationURL(`https://www.google.com/maps?q=${latitude},${longitude}`);
+        setLocationURL(
+          `https://www.google.com/maps?q=${latitude},${longitude}`
+        );
       });
     }
   }, []);
@@ -90,7 +92,7 @@ const Updateproduct: NextPage = () => {
       }
     },
   });
- 
+
   useEffect(() => {
     if ((data as ProductDetails) && !isLoading) {
       const {
@@ -163,7 +165,9 @@ const Updateproduct: NextPage = () => {
                           label="Product ID"
                           type="text"
                           placeholder="Product ID"
-                          onChange={(e) => setProductID(parseInt(e.target.value))}
+                          onChange={(e) =>
+                            setProductID(parseInt(e.target.value))
+                          }
                         />
                         <Input
                           id="Location"
@@ -172,10 +176,7 @@ const Updateproduct: NextPage = () => {
                           placeholder="Location"
                           onChange={(e) => setProuctLocation(e.target.value)}
                         />
-                        <Button
-                          label="Update Product"
-                          onClick={onOpen}
-                        />
+                        <Button label="Update Product" onClick={onOpen} />
                         <Modal onClose={onClose} isOpen={isOpen} isCentered>
                           <ModalOverlay />
                           <ModalContent>
@@ -185,6 +186,10 @@ const Updateproduct: NextPage = () => {
                             </ModalHeader>
                             <ModalCloseButton />
                             <ModalBody>
+                              <Text className="font-semibold text-sm text-gray-500 text-center pb-5 -pt-5">
+                                Please verify with the same wallet address that
+                                is connected to this site.
+                              </Text>
                               <Box className="flex flex-col items-center justify-center">
                                 <QRCode
                                   level="Q"
@@ -206,12 +211,19 @@ const Updateproduct: NextPage = () => {
             </div>
             <div className="w-full md:w-1/2">
               <div className="w-full pl-0 p-4 overflow-x-hidden overflow-y-auto md:inset-0 justify-center flex md:h-full">
-              <div className="relative w-full h-full md:h-auto">
+                <div className="relative w-full h-full md:h-auto">
                   <div className="relative rounded-lg shadow-lg backdrop-blur-sm bg-white/30 bg-opacity-30 dark:bg-gray-700/30 dark:bg-opacity-30">
                     <div className="px-6 py-6 lg:px-8">
-                    <p className="text-xl font-medium title-font mb-4 text-[#a13bf7]">{(productData as any).name}</p>
-                      <div className="p-2 flex flex-col">                       
-                        <ProductDetail label="" value={(productData as any).imageURL} type="image" />                      </div>
+                      <p className="text-xl font-medium title-font mb-4 text-[#a13bf7]">
+                        {(productData as any).name}
+                      </p>
+                      <div className="p-2 flex flex-col">
+                        <ProductDetail
+                          label=""
+                          value={(productData as any).imageURL}
+                          type="image"
+                        />{" "}
+                      </div>
                     </div>
                   </div>
                 </div>

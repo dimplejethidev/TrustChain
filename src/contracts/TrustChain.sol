@@ -1,6 +1,6 @@
 pragma solidity ^0.8.17;
 
-contract LogChain {
+contract TrustChain {
     struct Product {
         uint256 productId;
         string name;
