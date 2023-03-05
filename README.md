@@ -1,4 +1,4 @@
-# TrustChain
+# TrustChain update
 TrustChain is a decentralized application that provides an interactive platform to verify the authenticity of the product as well as highly secured supply chain operations. The user can have confidence that the products they are purchasing genuine products and not counterfeits. The SCM operations are enhanced with Polygon ID leveraging Zero-knowledge Proof (ZKP). It actually provides the whole supply chain operation like adding products or updating product locations to maintain a secure channel for verifying the provenance of the products. The most ideal scenario for utilization would be in the realm of luxury goods, high-end art pieces, and exclusive collections. Check out our flow for a better understanding.
 
 [<img width="1360" alt="Flowchart - Miro Board" src="https://user-images.githubusercontent.com/79443588/212469639-2e6f063b-3244-456d-85ae-de71b7c7b0bb.png">](https://miro.com/app/board/uXjVP0py33I=/?share_link_id=459305515488)
